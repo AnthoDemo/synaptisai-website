@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Synaptis AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Full page persistent background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: -1;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            min-height: 90px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 0.75rem 5%;
+            min-height: 80px;
+        }
+        
+        nav .container {
+            max-width: 1400px;
+            max-height: 60px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo-img {
+            height: 200px;  /* Match the index.html */
+            width: auto;
+            transition: transform 0.3s ease;
+            vertical-align: middle;
+        }
+
+        nav .logo-img:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #00d4ff;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #a855f7);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            margin-top: 90px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+        
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(10, 10, 26, 0.7) 100%);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 120px 5%;
+        }
+
+        .story h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .story h3 {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .story > p:first-of-type {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .story > p:nth-of-type(2) {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .story ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 3rem auto;
+            max-width: 1000px;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .story ul li {
+            padding: 2rem 2rem 2rem 4rem;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 15px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+
+        .story ul li:hover {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-color: rgba(255, 0, 0, 0.4);
+            transform: translateX(10px);
+        }
+
+        .issue-marker {
+            color: #ff4444;
+            font-size: 2rem;
+            position: absolute;
+            left: 1.5rem;
+            top: 2rem;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        .story ul li strong {
+            color: #00d4ff;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .story > p:last-of-type {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        .story::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .approach {
+            background: #000000;
+        }
+        
+        .approach-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .approach-item {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .approach-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
+            border-radius: 20px 20px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .approach-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .approach-item:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+        }
+        
+        .approach-item h4 {
+            color: #00d4ff;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .approach-item p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .process {
+            background: linear-gradient(180deg, #000000 0%, #0a0a1a 100%);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            padding: 6rem 2.5rem 2.5rem 2.5rem; /* Increased top padding for badge */
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.4s;
+            position: relative;
+            min-height: 280px; /* Ensure enough space */
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            border-radius: 50%;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: grid;
+            place-items: center;
+        }
+        
+        .step:nth-child(1)::before {
+            content: '1';
+        }
+        
+        .step:nth-child(2)::before {
+            content: '2';
+        }
+        
+        .step:nth-child(3)::before {
+            content: '3';
+        }
+        
+        .step:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+        }
+        
+        .step h4 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem; /* Added to separate from badge */
+        }
+        
+        .step p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+        
+        .step-number {
+            display: none;
+        }
+        
+        .cta-section {
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+        
+        .contact-info {
+            margin-top: 2.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            background: #000000;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 80px 5% 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h4 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+            
+            nav .logo-img {
+                height: 50px; /* Corrected from 200px to 50px */
+                margin-right: 10px;
+            }
+            
+            nav {
+                padding: 1rem 5%;
+                min-height: 70px;
+            }
+            
+            .step {
+                padding: 6rem 2.5rem 2.5rem 2.5rem; /* Consistent padding */
+                min-height: 260px; /* Adjusted for mobile content */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="index.html"><img src="logo.jpg" alt="Synaptis AI" class="logo-img"></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+    </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>We Build AI That Works for Real Businesses</h1>
+            <p>Synaptis AI exists for one reason: to free companies from repetitive work so they can focus on what actually drives growth.</p>
+        </div>
+    </section>
+
+    <section class="story">
+        <h2>Our Story</h2>
+        <h3>Born from Frustration with Wasted Time</h3>
+        <p>Synaptis AI was born from the frustration of witnessing talented teams across industries crippled by inefficiency and outdated processes. Founded by industry veterans who experienced firsthand the toll of manual workflows, our mission is to liberate businesses from these constraints through custom AI automation. We specialize in delivering tailored, results-oriented solutions that integrate seamlessly with existing systems, serving manufacturing, agriculture, social media, and enterprise sectors. Our journey began with a simple realization: time is a business’s most valuable asset, and too often, it’s squandered on repetitive tasks.</p>
+        <p>Businesses today face a range of challenges that inspired our creation:</p>
+        <ul>
+            <li><span class="issue-marker">✗</span> <strong>Manual Data Overload:</strong> Teams spend hours on repetitive data entry, leaving little room for strategic thinking or innovation.</li>
+            <li><span class="issue-marker">✗</span> <strong>Workflow Bottlenecks:</strong> Slow, fragmented processes delay decision-making and hinder productivity across departments.</li>
+            <li><span class="issue-marker">✗</span> <strong>Costly Errors:</strong> Human mistakes in inventory tracking, reporting, or customer data management lead to financial losses and missed opportunities.</li>
+            <li><span class="issue-marker">✗</span> <strong>Scalability Struggles:</strong> Growing businesses struggle to handle increased workloads without proportionally expanding headcount or budgets.</li>
+            <li><span class="issue-marker">✗</span> <strong>Competitive Disadvantage:</strong> Companies lacking automation fall behind competitors who leverage AI to streamline operations and respond to market changes swiftly.</li>
+        </ul>
+        <p>Driven by these pain points, Synaptis AI is committed to transforming how businesses operate, empowering teams to reclaim their time and focus on growth. Our solutions are designed not just to automate, but to adapt and evolve with your business, ensuring long-term success in an increasingly AI-driven world.</p>
+    </section>
+
+    <section class="approach">
+        <h2>Our Approach</h2>
+        <h3>No Templates. No Generic Software.</h3>
+        <p>Every business is different. Cookie-cutter solutions fail because they force you to adapt to the software instead of the software adapting to you. We start by understanding your specific workflows, pain points, and goals. Then we build custom AI automation that integrates seamlessly with your existing systems.</p>
+        
+        <div class="approach-list">
+            <div class="approach-item">
+                <h4>Discovery-Driven</h4>
+                <p>We map your workflows with precision before any build.</p>
+            </div>
+            <div class="approach-item">
+                <h4>Integration-First</h4>
+                <p>Solutions plug into your current tech without disruption.</p>
+            </div>
+            <div class="approach-item">
+                <h4>Results-Measured</h4>
+                <p>Success hinges on time saved and value added.</p>
+            </div>
+            <div class="approach-item">
+                <h4>Support-Backed</h4>
+                <p>We partner with you from deployment through growth phases.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <h2>Analysis to Transformation in Three Steps</h2>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1. Identify</div>
+                <h4>Identify</h4>
+                <p>We conduct a detailed workflow audit in a free consultation, uncovering hidden inefficiencies—start today to stay competitive.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2. Build</div>
+                <h4>Build</h4>
+                <p>Our team engineers AI tailored to your systems, ensuring compatibility and scalability—delivered with speed.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3. Transform</div>
+                <h4>Transform</h4>
+                <p>We roll out your solution with continuous support, adapting it as your business evolves—don't wait to see results.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Let's Talk About Your Automation Opportunity</h2>
+        <p>In a free 30-minute consultation, we'll identify specific areas where automation can transform your operations.</p>
+        <a href="contact.html" class="btn btn-primary">Schedule Free Consultation</a>
+        <div class="contact-info">
+            <p><strong>contact@synaptisai.com</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Synaptis AI</h4>
+                <p>Intelligent Automation for Modern Business</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Manufacturing</li>
+                    <li>Agriculture</li>
+                    <li>Social Media</li>
+                    <li>Enterprise</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>contact@synaptisai.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Synaptis AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

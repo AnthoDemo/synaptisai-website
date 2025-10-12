@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synaptis AI - Automation That Drives Growth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Full page persistent background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: -1;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem 5%;
+        }
+        
+        nav .container {
+            max-width: 1400px;
+            max-height: 60px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+        
+        nav ul li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #00d4ff;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #a855f7);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+        
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+        
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+        
+        /* Problem Section */
+        .problem {
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+        
+        .problem h2 {
+            margin-bottom: 2.5rem;
+        }
+        
+        .problem p {
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+        
+        /* What We Do */
+        .what-we-do {
+            position: relative;
+        }
+        
+        .what-we-do::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .industries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .industry-card {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .industry-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .industry-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+        
+        .industry-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        .industry-card:hover h4 {
+            color: #a855f7;
+        }
+        
+        .industry-card p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+        
+        .industry-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Why Synaptis */
+        .why-synaptis {
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .why-synaptis h3 {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;  /* Increase this from 1.5rem to 3rem or 4rem */
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);  /* 2 columns on tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;  /* 1 column on mobile */
+            }
+        }
+
+        .feature {
+            position: relative;
+            padding: 2rem;
+            padding-left: 2.5rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            min-height: 200px;  /* Force same height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+            border-radius: 2px 0 0 2px;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            transform: translateY(-5px);
+        }
+
+        .feature:hover::before {
+            height: 100%;
+        }
+        
+        .why-synaptis > p {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-top: 4rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+        
+        /* Transformation */
+        .transformation {
+            position: relative;
+        }
+        
+        .benefits {
+            margin-top: 4rem;
+            display: grid;
+            gap: 2.5rem;
+        }
+        
+        .benefit {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(168, 85, 247, 0.03) 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .benefit:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            transform: translateX(10px);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .benefit:hover .benefit-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+        
+        .benefit h4 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .benefit p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            margin-top: 2.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 80px 5% 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h4 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+        }
+
+        nav .logo-img {
+            height: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        nav .logo-img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="index.html"><img src="logo_trans.png" alt="Synaptis AI" class="logo-img"></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Automation That Drives Growth</h1>
+            <p>Synaptis AI puts intelligent automation at the heart of your operations—your trusted partner in becoming an AI-first business.</p>
+            <div class="cta-buttons">
+                <a href="#what-we-do" class="btn btn-primary">What We Do</a>
+                <a href="about.html" class="btn btn-secondary">About Us</a>
+                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <h2>The Problem:</h2>
+        <p>Manual data entry, endless reports, and clogged workflows silently erode your team's productivity. Competitors leverage automation to gain an edge, leaving you with lost hours, stalled innovation, and a workforce stretched thin by routine. The real cost? Missed market opportunities and diminished morale.</p>
+    </section>
+
+    <section class="what-we-do" id="what-we-do">
+        <h2>What We Do</h2>
+        <p>We develop AI solutions uniquely designed for your business, avoiding off-the-shelf fixes. Our systems integrate seamlessly with your existing tech stack, targeting specific pain points across industries:</p>
+        
+        <div class="industries">
+            <div class="industry-card">
+                <h4>Enterprise</h4>
+                <p>Unified automation for finance, operations, and customer service, breaking down departmental silos.</p>
+            </div>
+            <div class="industry-card">
+                <h4>Manufacturing</h4>
+                <p>Real-time inventory tracking, precision quality control, anomaly detection and predictive production analytics.</p>
+            </div>
+            <div class="industry-card">
+                <h4>Agriculture</h4>
+                <p>Advanced crop health monitoring, resource allocation optimization, and actionable data insights.</p>
+            </div>
+            <div class="industry-card">
+                <h4>Social Media</h4>
+                <p>Automated content calendars, deep engagement metrics, and trend-driven analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-synaptis">
+        <h2>Why Synaptis AI</h2>
+        <h3>Practical AI, Real Results</h3>
+        
+        <div class="features">
+            <div class="feature">
+                <h4>Expert-Built</h4>
+                <p>Our team's enterprise tech experience delivers solutions that work.</p>
+            </div>
+            <div class="feature">
+                <h4>Custom-Fit</h4>
+                <p>No cookie-cutter tools—your automation matches your needs.</p>
+            </div>
+            <div class="feature">
+                <h4>Results-Driven</h4>
+                <p>We focus on time saved and value created, not flashy demos.</p>
+            </div>
+            <div class="feature">
+                <h4>Human-First</h4>
+                <p>Our AI enhances productivity, not replaces people—empowering your team to innovate and lead.</p>
+            </div>
+            <div class="feature">
+                <h4>Seamless Integration-First</h4>
+                <p>Your automation plugs into existing systems without disruption or downtime.</p>
+            </div>
+            <div class="feature">
+                <h4>Scalable Growth</h4>
+                <p>Solutions that evolve with your business—built to handle today's needs and tomorrow's expansion.</p>
+            </div>
+        </div>
+        
+        <p>The AI landscape is evolving at breakneck speed—companies that don't invest now will be outpaced and lose their edge for good.</p>
+    </section>
+
+    <section class="transformation">
+        <h2>What Automation Unlocks</h2>
+        
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">⏱</div>
+                <div>
+                    <h4>Save 20+ hours weekly</h4>
+                    <p>Eliminate repetitive data entry, manual reporting, and workflow bottlenecks. Your team reclaims valuable time to focus on high-impact work that actually moves the needle.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">✓</div>
+                <div>
+                    <h4>Speed up decisions</h4>
+                    <p>Access real-time analytics and actionable insights without waiting for manual reports. Make informed decisions faster and stay ahead of market changes.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">↑</div>
+                <div>
+                    <h4>Scale efficiently</h4>
+                    <p>Handle 2x, 5x, or 10x the workload without proportionally increasing headcount. Automation grows with your business, not your payroll.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">✕</div>
+                <div>
+                    <h4>Reduce errors</h4>
+                    <p>Automated systems eliminate costly human mistakes in data handling, inventory tracking, and workflow execution. Consistency and accuracy become the default.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔑</div>
+                <div>
+                    <h4>Focus on strategy</h4>
+                    <p>Free your executives and top performers from administrative busywork. Let them spend time on innovation, client relationships, and growth initiatives that drive revenue.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Get In Touch</h2>
+        <p>Don't let your business fall behind—partner with us to harness the power of AI and drive sustainable growth.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <div class="contact-info">
+            <p>contact@synaptisai.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Synaptis AI</h4>
+                <p>Intelligent Automation for Modern Business</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Manufacturing</li>
+                    <li>Agriculture</li>
+                    <li>Social Media</li>
+                    <li>Enterprise</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>contact@synaptisai.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Synaptis AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
