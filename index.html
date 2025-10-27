@@ -415,13 +415,6 @@
             }
         }
 
-        @media (max-width: 695px) {
-            /* Add padding to hero section to prevent navbar overlap */
-            nav{
-                padding: 0.8rem;
-            }
-        }
-
         .feature {
             position: relative;
             padding: 2rem;
@@ -649,6 +642,18 @@
 
         nav .logo-img:hover {
             transform: scale(1.05);
+        }
+
+        @media (max-width: 695px) {
+            /* Add padding to hero section to prevent navbar overlap */
+            nav{
+                padding: 0.8rem;
+            }
+    
+            nav .logo-img {
+                height: 125px;
+                transition: transform 0.3s ease;
+            }
         }
     </style>
 </head>
