@@ -392,7 +392,7 @@
             }
             
             nav .logo-img {
-                height: 50px;
+                height: 200px;
                 margin-right: 10px;
             }
             
@@ -404,6 +404,18 @@
             .contact-section {
                 padding: 80px 5% 60px;
                 margin-top: 70px;
+            }
+
+            @media (max-width: 695px) {
+                /* Add padding to hero section to prevent navbar overlap */
+                nav{
+                    padding: 0.8rem;
+                }
+        
+                nav .logo-img {
+                    height: 125px;
+                    transition: transform 0.3s ease;
+                } 
             }
         }
     </style>
