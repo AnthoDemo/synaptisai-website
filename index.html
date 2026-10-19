@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Synaptis AI builds custom operating systems and AI agents for businesses that have outgrown spreadsheets. AI drafts, people decide, and you own every line.">
+<link rel="icon" href="logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -47,6 +48,8 @@
   header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(14,22,30,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
   .brand{font-family:var(--display);font-weight:600;font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .logo{height:34px;width:auto;display:block}
+  .foot .logo{height:26px}
   .brand .ring{width:16px;height:16px;border-radius:50%;border:2px solid var(--amber);display:grid;place-items:center}
   .brand .ring::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber)}
   .links{display:flex;gap:28px;font-size:15px}
@@ -204,7 +207,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="ring" aria-hidden="true"></span>Synaptis AI</a>
+    <a class="brand" href="#top"><img class="logo" src="logo-mark.png" alt="" width="42" height="34">Synaptis AI</a>
     <nav class="links" aria-label="Main">
       <a href="#how">How it works</a>
       <a href="#build">What we build</a>
@@ -476,7 +479,7 @@
 
 <footer>
   <div class="wrap foot">
-    <div>© 2026 Synaptis AI</div>
+    <div style="display:flex;align-items:center;gap:10px"><img class="logo" src="logo-mark.png" alt="" width="32" height="26">© 2026 Synaptis AI</div>
     <div>Operations, built with discipline.</div>
   </div>
 </footer>
