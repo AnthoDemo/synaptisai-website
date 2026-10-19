@@ -1,844 +1,525 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synaptis AI - Automation That Drives Growth</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Full page persistent background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 1;
-            z-index: -2;
-        }
-        
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
-            z-index: -1;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 1.5rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        nav.scrolled {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 1rem 5%;
-        }
-        
-        nav .container {
-            max-width: 1400px;
-            max-height: 60px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: all 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 3rem;
-        }
-        
-        nav ul li a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        
-        nav ul li a:hover {
-            color: #00d4ff;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00d4ff, #a855f7);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(100px);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-        }
-        
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            letter-spacing: -3px;
-            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
-        }
-        
-        .btn {
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
-            color: #ffffff;
-            border: none;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            border-color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        /* Sections */
-        section {
-            padding: 120px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: all 0.3s ease;
-        }
-        
-        h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        
-        p {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 1.15rem;
-            line-height: 1.9;
-        }
-        
-        /* Problem Section */
-        .problem {
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        .problem::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-        }
-        
-        .problem h2 {
-            margin-bottom: 2.5rem;
-        }
-        
-        .problem p {
-            font-size: 1.2rem;
-            line-height: 2;
-        }
-        
-        /* What We Do */
-        .what-we-do {
-            position: relative;
-        }
-        
-        .what-we-do::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(100px);
-        }
-        
-        .industries {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .industry-card {
-            padding: 3rem 2rem;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .industry-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .industry-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .industry-card:hover {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-            border-color: rgba(0, 212, 255, 0.4);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-        }
-        
-        .industry-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #00d4ff;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-        
-        .industry-card:hover h4 {
-            color: #a855f7;
-        }
-        
-        .industry-card p {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.7;
-            transition: color 0.3s ease;
-        }
-        
-        .industry-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Why Synaptis */
-        .why-synaptis {
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        .why-synaptis h3 {
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 400;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;  /* Increase this from 1.5rem to 3rem or 4rem */
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+<title>Synaptis AI</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Synaptis AI builds custom operating systems and AI agents for businesses that have outgrown spreadsheets. AI drafts, people decide, and you own every line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout concept: a dark control-room page. One amber signal color, used only where something needs a decision.
+     Hero pairs the promise with a working "cockpit" card; the rest alternates ruled rows and a few panels. */
+  :root{
+    --bg:#0E161E;
+    --panel:#16222E;
+    --panel-2:#1C2B39;
+    --line:#243545;
+    --line-2:#33485C;
+    --text:#F1EEE6;
+    --soft:#B4C0CB;
+    --faint:#8696A6;
+    --amber:#E0A030;
+    --amber-ink:#1A1405;
+    --ok:#4CC38A;
+    --crit:#F0706B;
+    --display:'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+  h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;letter-spacing:-0.01em;text-wrap:balance}
+  p{margin:0}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  .wrap{width:100%;max-width:1180px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+  section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
+  h2{font-size:clamp(30px,4.2vw,50px);line-height:1.1;max-width:22ch}
+  .eyebrow{font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+  .lede{color:var(--soft);font-size:clamp(17px,1.6vw,20px);max-width:58ch}
 
-        @media (max-width: 1024px) {
-            .features {
-                grid-template-columns: repeat(2, 1fr);  /* 2 columns on tablets */
-            }
-        }
+  /* header */
+  header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(14,22,30,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+  .brand{font-family:var(--display);font-weight:600;font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .ring{width:16px;height:16px;border-radius:50%;border:2px solid var(--amber);display:grid;place-items:center}
+  .brand .ring::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber)}
+  .links{display:flex;gap:28px;font-size:15px}
+  .links a{text-decoration:none;color:var(--soft)}
+  .links a:hover{color:var(--text)}
+  .btn{display:inline-block;background:var(--amber);color:var(--amber-ink);font-weight:600;font-size:15px;padding:12px 22px;border-radius:10px;text-decoration:none;border:1px solid var(--amber);transition:transform .12s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+  .btn.ghost:hover{border-color:var(--amber)}
+  .btn.small{padding:9px 16px;font-size:14px}
+  @media (max-width:820px){.links{display:none}}
 
-        @media (max-width: 768px) {
-            .features {
-                grid-template-columns: 1fr;  /* 1 column on mobile */
-            }
-        }
+  /* hero */
+  .hero{border-top:none;padding-block:clamp(56px,8vw,104px);overflow-x:clip}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+  .hero h1{font-size:clamp(42px,6.4vw,84px);line-height:1.02;max-width:11ch}
+  .hero .lede{margin-top:26px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  @media (max-width:940px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
 
-        .feature {
-            position: relative;
-            padding: 2rem;
-            padding-left: 2.5rem;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            min-height: 200px;  /* Force same height */
-            display: flex;
-            flex-direction: column;
-        }
+  .visual{position:relative}
+  .rings{position:absolute;right:-70px;top:-70px;width:340px;height:340px;pointer-events:none}
+  .cockpit{position:relative;background:var(--panel);border:1px solid var(--line-2);border-radius:22px;padding:24px;display:grid;gap:18px}
+  .ck-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+  .ck-head span:first-child{color:var(--amber)}
+  .ck-head span:last-child{color:var(--soft)}
+  .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .tile{background:var(--panel-2);border-radius:12px;padding:14px 16px}
+  .tile small{display:block;color:var(--soft);font-size:14px;line-height:1.3}
+  .tile b{display:block;margin-top:6px;font:600 30px/1.1 var(--display)}
+  .ck-label{font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .ck-rows{display:grid;gap:10px}
+  .rowbtn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--panel-2);border:1px solid transparent;border-radius:12px;padding:12px 14px;color:var(--text);font:inherit;font-size:15.5px;line-height:1.35;cursor:pointer}
+  .rowbtn:hover{border-color:var(--line-2)}
+  .pill{flex:none;min-width:104px;text-align:center;font:600 12px/1 var(--mono);letter-spacing:.08em;background:var(--amber);color:var(--amber-ink);padding:7px 10px;border-radius:99px}
+  .rowbtn .txt{min-width:0}
+  .rowbtn.done{opacity:.6}
+  .rowbtn.done .txt{text-decoration:line-through}
+  .rowbtn.done .pill{background:var(--ok)}
+  .ck-note{font-size:13.5px;color:var(--faint)}
 
-        .feature::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
-            border-radius: 2px 0 0 2px;
-            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  /* trust strip */
+  .strip{border-top:1px solid var(--line);padding-block:0}
+  .strip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fact{padding:28px 24px 28px 0;border-right:1px solid var(--line)}
+  .fact:last-child{border-right:none}
+  .fact b{display:block;font:600 20px/1.25 var(--display);margin-bottom:6px}
+  .fact span{display:block;color:var(--soft);font-size:15px;line-height:1.5}
+  @media (max-width:900px){.strip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fact{border-right:none;border-bottom:1px solid var(--line);padding-right:16px}.fact:nth-last-child(-n+2){border-bottom:none}}
+  @media (max-width:520px){.strip-grid{grid-template-columns:minmax(0,1fr)}.fact:nth-last-child(2){border-bottom:1px solid var(--line)}}
 
-        .feature:hover {
-            border-color: rgba(0, 212, 255, 0.4);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-            transform: translateY(-5px);
-        }
+  /* idea */
+  .idea-head{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,56px);line-height:1.12;max-width:24ch;text-wrap:balance}
+  .scales{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px}
+  .scale{border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+  .scale.dark{background:var(--panel-2);border-color:var(--line-2)}
+  .scale small{display:block;font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+  .scale p{font-size:19px;line-height:1.5}
+  .moments{margin-top:56px;border-top:1px solid var(--line)}
+  .moment{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:12px 40px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .moment h3{font-size:24px}
+  .moment p{color:var(--soft)}
+  @media (max-width:820px){.scales{grid-template-columns:minmax(0,1fr)}.moment{grid-template-columns:minmax(0,1fr)}}
 
-        .feature:hover::before {
-            height: 100%;
-        }
-        
-        .why-synaptis > p {
-            text-align: center;
-            font-size: 1.3rem;
-            margin-top: 4rem;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
-        }
-        
-        /* Transformation */
-        .transformation {
-            position: relative;
-        }
-        
-        .benefits {
-            margin-top: 4rem;
-            display: grid;
-            gap: 2.5rem;
-        }
-        
-        .benefit {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
-            align-items: start;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(168, 85, 247, 0.03) 100%);
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .benefit:hover {
-            border-color: rgba(0, 212, 255, 0.3);
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
-            transform: translateX(10px);
-        }
-        
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .benefit:hover .benefit-icon {
-            transform: rotate(5deg) scale(1.1);
-        }
-        
-        .benefit h4 {
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        
-        .benefit p {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-            text-align: center;
-            position: relative;
-        }
-        
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(100px);
-        }
-        
-        .cta-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cta-section p {
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-info {
-            margin-top: 2.5rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 80px 5% 40px;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-section h4 {
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-        
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
-        }
-        
-        .footer-section ul li a:hover {
-            color: #00d4ff;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2.5rem;
-            }
-            
-            nav ul {
-                gap: 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            section {
-                padding: 80px 5%;
-            }
-        }
+  /* flow */
+  .flow{display:grid;gap:10px;margin-top:40px}
+  .step{display:grid;grid-template-columns:56px minmax(0,300px) minmax(0,1fr);gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  .step .n{font:600 34px/1 var(--display);color:var(--amber)}
+  .step h3{font-size:22px}
+  .step p{color:var(--soft);font-size:16px}
+  .step.human{background:var(--amber);border-color:var(--amber)}
+  .step.human .n,.step.human p,.step.human h3{color:var(--amber-ink)}
+  @media (max-width:760px){.step{grid-template-columns:40px minmax(0,1fr);gap:8px 14px}.step p{grid-column:2}}
 
-        nav .logo-img {
-            height: 200px; /* Corrected from 200px to 50px */
-            margin-right: 10px;
-        }
+  /* capabilities */
+  .caps{margin-top:40px;border-top:1px solid var(--line)}
+  .cap{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px 56px;padding:34px 0;border-bottom:1px solid var(--line)}
+  .cap .k{font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+  .cap h3{font-size:27px;line-height:1.15}
+  .cap .lead{color:var(--text);margin-bottom:14px;font-size:18px}
+  .cap ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;color:var(--soft)}
+  .cap li{padding-left:20px;position:relative}
+  .cap li::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:2px;background:var(--amber)}
+  @media (max-width:820px){.cap{grid-template-columns:minmax(0,1fr)}}
 
-        nav .logo-img:hover {
-            transform: scale(1.05);
-        }
+  /* demo */
+  .demo-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+  .demo-grid .lede{margin-top:22px}
+  .widget{background:var(--panel);border:1px solid var(--line-2);border-radius:20px;padding:28px}
+  .w-label{font:500 12.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .w-formula{font:400 13px/1.5 var(--mono);color:var(--faint);margin-bottom:22px;overflow-wrap:anywhere}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--line-2);border-radius:2px;outline-offset:8px;margin:8px 0 20px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--amber);border:3px solid var(--bg);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--amber);border:3px solid var(--bg);cursor:pointer}
+  .track{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:7px;overflow:hidden}
+  .fill{height:100%;width:45%;background:var(--ok);transition:width .15s,background .15s}
+  .fill.warn{background:var(--amber)}
+  .fill.crit{background:var(--crit)}
+  .readout{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}
+  .readout .v{font:600 28px/1 var(--display)}
+  .state{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border-radius:99px;border:1px solid currentColor}
+  .state.ok{color:var(--ok)} .state.warn{color:var(--amber)} .state.crit{color:var(--crit)}
+  .alert{margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 14px/1.5 var(--mono);color:var(--soft);min-height:3.4em}
+  .w-note{margin-top:14px;font-size:14px;color:var(--faint)}
+  @media (max-width:940px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
 
-        @media (max-width: 695px) {
-            /* Add padding to hero section to prevent navbar overlap */
-            nav{
-                padding: 0.8rem;
-            }
-    
-            nav .logo-img {
-                height: 75px;
-                transition: transform 0.3s ease;
-            }
-        }
-    </style>
+  /* use cases */
+  .uses{margin-top:40px;border-top:1px solid var(--line)}
+  .use{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:12px 56px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .use h3{font-size:25px}
+  .use p{color:var(--soft)}
+  @media (max-width:820px){.use{grid-template-columns:minmax(0,1fr)}}
+
+  /* work */
+  .work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .work-head .tag{font:400 13px/1.5 var(--mono);color:var(--faint);max-width:34ch}
+  .feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px 48px;background:var(--panel-2);border:1px solid var(--line-2);border-radius:20px;padding:34px;margin-top:40px}
+  .feature h3{font-size:30px;line-height:1.15}
+  .feature p{color:var(--soft)}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px}
+  .card h3{font-size:23px;line-height:1.2}
+  .card p{color:var(--soft);font-size:16px}
+  .kicker{font:500 12.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+  .status{align-self:flex-start;margin-top:auto;font:500 12.5px/1 var(--mono);letter-spacing:.03em;border:1px solid var(--line-2);color:var(--soft);padding:8px 12px;border-radius:99px}
+  .feature .status{margin-top:4px}
+  @media (max-width:820px){.feature{grid-template-columns:minmax(0,1fr);padding:26px}.cards{grid-template-columns:minmax(0,1fr)}}
+
+  /* engagement */
+  .eng{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+  .eng div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .eng b{display:block;font:600 40px/1 var(--display);color:var(--amber);margin-bottom:14px}
+  .eng h3{font-size:24px;margin-bottom:10px}
+  .eng p{color:var(--soft);font-size:16px}
+  @media (max-width:820px){.eng{grid-template-columns:minmax(0,1fr)}}
+  .why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:64px}
+  .why h3{font-size:21px;margin-bottom:8px}
+  .why p{color:var(--soft);font-size:16px}
+  @media (max-width:820px){.why{grid-template-columns:minmax(0,1fr);gap:28px}}
+
+  /* contact */
+  .contact{background:var(--panel)}
+  .contact h2{font-size:clamp(34px,5vw,60px);max-width:16ch}
+  .contact .lede{margin-top:20px}
+  .contact-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+  .where{font:500 15px/1.9 var(--mono);color:var(--soft)}
+  .where b{display:block;color:var(--faint);font-weight:500;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+  .where span{color:var(--text);user-select:all}
+  footer{border-top:1px solid var(--line);padding-block:24px;color:var(--faint);font-size:14px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
 </head>
 <body>
-    <nav id="navbar">
-        <div class="container">
-            <a href="index.html"><img src="logo_trans.png" alt="Synaptis AI" class="logo-img"></a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="ring" aria-hidden="true"></span>Synaptis AI</a>
+    <nav class="links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#build">What we build</a>
+      <a href="#work">Work</a>
+      <a href="#start">Engagement</a>
     </nav>
+    <a class="btn small" href="#contact">Start a conversation</a>
+  </div>
+</header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Automation That Drives Growth</h1>
-            <p>Synaptis AI puts intelligent automation at the heart of your operations—your trusted partner in becoming an AI-first business.</p>
-            <div class="cta-buttons">
-                <a href="#what-we-do" class="btn btn-primary">What We Do</a>
-                <a href="about.html" class="btn btn-secondary">About Us</a>
-                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
-            </div>
-        </div>
-    </section>
+<main id="top">
 
-    <section class="problem">
-        <h2>The Problem:</h2>
-        <p>Manual data entry, endless reports, and clogged workflows silently erode your team's productivity. Competitors leverage automation to gain an edge, leaving you with lost hours, stalled innovation, and a workforce stretched thin by routine. The real cost? Missed market opportunities and diminished morale.</p>
-    </section>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Operating systems and AI agents</p>
+        <h1>A cockpit for your business.</h1>
+        <p class="lede">We build custom systems for businesses that have outgrown spreadsheets and chat threads. AI does the typing and the checking, your people make the decisions, and you own every line of it.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">Book a working session</a>
+          <a class="btn ghost" href="#how">See how it works</a>
+        </div>
+      </div>
+      <div class="visual">
+        <svg class="rings" viewBox="0 0 340 340" aria-hidden="true" focusable="false">
+          <circle cx="170" cy="170" r="165" fill="none" stroke="#33485C" stroke-width="1.5"/>
+          <circle cx="170" cy="170" r="115" fill="none" stroke="#33485C" stroke-width="1.5"/>
+          <circle cx="170" cy="170" r="65" fill="none" stroke="#E0A030" stroke-width="1.5"/>
+          <circle cx="170" cy="170" r="9" fill="#E0A030"/>
+        </svg>
+        <div class="cockpit" role="group" aria-label="Example cockpit screen">
+          <div class="ck-head"><span>Good morning</span><span id="ckCount">3 need you</span></div>
+          <div class="tiles">
+            <div class="tile"><small>Drafted overnight</small><b>7</b></div>
+            <div class="tile"><small>Waiting on you</small><b>3</b></div>
+            <div class="tile"><small>Deadlines this week</small><b>2</b></div>
+          </div>
+          <div class="ck-label">Your three decisions</div>
+          <div class="ck-rows">
+            <button type="button" class="rowbtn" data-pill="OVERNIGHT" aria-pressed="false"><span class="pill">OVERNIGHT</span><span class="txt">Two rooms, late arrival: a booking request drafted in the guest’s language</span></button>
+            <button type="button" class="rowbtn" data-pill="DEADLINE" aria-pressed="false"><span class="pill">DEADLINE</span><span class="txt">Bond renewal due in 9 days, with 87% of capacity in use</span></button>
+            <button type="button" class="rowbtn" data-pill="MISMATCH" aria-pressed="false"><span class="pill">MISMATCH</span><span class="txt">Delivery note says 40 units, the purchase order says 48</span></button>
+          </div>
+          <p class="ck-note">Illustrative data. Tap a row to resolve it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="what-we-do" id="what-we-do">
-        <h2>What We Do</h2>
-        <p>We develop AI solutions uniquely designed for your business, avoiding off-the-shelf fixes. Our systems integrate seamlessly with your existing tech stack, targeting specific pain points across industries:</p>
-        
-        <div class="industries">
-            <div class="industry-card">
-                <h4>Enterprise</h4>
-                <p>Unified automation for finance, operations, and customer service, breaking down departmental silos.</p>
-            </div>
-            <div class="industry-card">
-                <h4>Manufacturing</h4>
-                <p>Real-time inventory tracking, precision quality control, anomaly detection and predictive production analytics.</p>
-            </div>
-            <div class="industry-card">
-                <h4>Agriculture</h4>
-                <p>Advanced crop health monitoring, resource allocation optimization, and actionable data insights.</p>
-            </div>
-            <div class="industry-card">
-                <h4>Social Media</h4>
-                <p>Automated content calendars, deep engagement metrics, and trend-driven analytics.</p>
-            </div>
-        </div>
-    </section>
+  <section class="strip" aria-label="Credentials">
+    <div class="wrap strip-grid">
+      <div class="fact"><b>SAP S/4HANA</b><span>The world’s leading ERP, delivered for multi-billion-dollar retailers.</span></div>
+      <div class="fact"><b>Across Africa</b><span>Operations systems designed for manufacturing, logistics and agriculture.</span></div>
+      <div class="fact"><b>Cloud or on-premise</b><span>Your accounts, your servers, your code.</span></div>
+      <div class="fact"><b>People decide</b><span>Nothing that commits money runs without a person’s approval.</span></div>
+    </div>
+  </section>
 
-    <section class="why-synaptis">
-        <h2>Why Synaptis AI</h2>
-        <h3>Practical AI, Real Results</h3>
-        
-        <div class="features">
-            <div class="feature">
-                <h4>Expert-Built</h4>
-                <p>Our team's enterprise tech experience delivers solutions that work.</p>
-            </div>
-            <div class="feature">
-                <h4>Custom-Fit</h4>
-                <p>No cookie-cutter tools—your automation matches your needs.</p>
-            </div>
-            <div class="feature">
-                <h4>Results-Driven</h4>
-                <p>We focus on time saved and value created, not flashy demos.</p>
-            </div>
-            <div class="feature">
-                <h4>Human-First</h4>
-                <p>Our AI enhances productivity, not replaces people—empowering your team to innovate and lead.</p>
-            </div>
-            <div class="feature">
-                <h4>Seamless Integration-First</h4>
-                <p>Your automation plugs into existing systems without disruption or downtime.</p>
-            </div>
-            <div class="feature">
-                <h4>Scalable Growth</h4>
-                <p>Solutions that evolve with your business—built to handle today's needs and tomorrow's expansion.</p>
-            </div>
-        </div>
-        
-        <p>The AI landscape is evolving at breakneck speed—companies that don't invest now will be outpaced and lose their edge for good.</p>
-    </section>
+  <section id="idea">
+    <div class="wrap">
+      <p class="eyebrow">The idea</p>
+      <p class="idea-head">Every business problem is information that is not where someone needs it, when they need it.</p>
+      <div class="scales">
+        <div class="scale dark"><small>At enterprise scale</small><p>Whole systems exist to keep the tills, the stock and the books in agreement.</p></div>
+        <div class="scale"><small>At every other scale</small><p>The same problem, held together by chat threads, spreadsheets and people’s memory.</p></div>
+      </div>
+      <div class="moments">
+        <div class="moment"><h3>The buried message</h3><p>An order sits in a chat thread from Tuesday. The customer calls on Friday.</p></div>
+        <div class="moment"><h3>The deposit nobody can prove</h3><p>“I already paid.” You remember a number. You cannot show one.</p></div>
+        <div class="moment"><h3>The promise you cannot keep</h3><p>A yes goes out before anyone checks the stock or the time it takes to make.</p></div>
+        <div class="moment"><h3>The owner who cannot step away</h3><p>Everything lives in one head and one phone. Two days off, and the business stops.</p></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="transformation">
-        <h2>What Automation Unlocks</h2>
-        
-        <div class="benefits">
-            <div class="benefit">
-                <div class="benefit-icon">⏱</div>
-                <div>
-                    <h4>Save 20+ hours weekly</h4>
-                    <p>Eliminate repetitive data entry, manual reporting, and workflow bottlenecks. Your team reclaims valuable time to focus on high-impact work that actually moves the needle.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">✓</div>
-                <div>
-                    <h4>Speed up decisions</h4>
-                    <p>Access real-time analytics and actionable insights without waiting for manual reports. Make informed decisions faster and stay ahead of market changes.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">↑</div>
-                <div>
-                    <h4>Scale efficiently</h4>
-                    <p>Handle 2x, 5x, or 10x the workload without proportionally increasing headcount. Automation grows with your business, not your payroll.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">✕</div>
-                <div>
-                    <h4>Reduce errors</h4>
-                    <p>Automated systems eliminate costly human mistakes in data handling, inventory tracking, and workflow execution. Consistency and accuracy become the default.</p>
-                </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon">🔑</div>
-                <div>
-                    <h4>Focus on strategy</h4>
-                    <p>Free your executives and top performers from administrative busywork. Let them spend time on innovation, client relationships, and growth initiatives that drive revenue.</p>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>From a message to a business record</h2>
+      <div class="flow">
+        <div class="step"><span class="n">1</span><h3>A message arrives</h3><p>WhatsApp, Instagram, a missed call, the website. Wherever your customers already are.</p></div>
+        <div class="step"><span class="n">2</span><h3>The agent reads and drafts</h3><p>It understands the request, checks real stock and dates, and prepares a quote or an order. Nothing is sent yet.</p></div>
+        <div class="step human"><span class="n">3</span><h3>A person approves</h3><p>One tap from you or your team. Anything that commits the business or touches money stops here.</p></div>
+        <div class="step"><span class="n">4</span><h3>The system records it</h3><p>One source of truth: who asked, what was agreed, what was paid, what is still owed.</p></div>
+        <div class="step"><span class="n">5</span><h3>The cockpit says what is next</h3><p>Not a report to read. A short list of what needs you today.</p></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="cta-section">
-        <h2>Get In Touch</h2>
-        <p>Don't let your business fall behind—partner with us to harness the power of AI and drive sustainable growth.</p>
-        <a href="contact.html" class="btn btn-primary">Contact Us</a>
-        <div class="contact-info">
-            <p>contact@synaptisai.com</p>
+  <section id="build">
+    <div class="wrap">
+      <p class="eyebrow">What we build</p>
+      <h2>Five parts, one system</h2>
+      <div class="caps">
+        <div class="cap">
+          <div><div class="k">Frontend</div><h3>The cockpit</h3></div>
+          <div>
+            <p class="lead">One screen that shows what needs you today.</p>
+            <ul>
+              <li>Made for the phone in your hand, and it installs like an app</li>
+              <li>Any language, including right-to-left scripts</li>
+              <li>No manual. If a new hire cannot use it in ten minutes, we rebuild it</li>
+            </ul>
+          </div>
         </div>
-    </section>
+        <div class="cap">
+          <div><div class="k">Backend</div><h3>Rules that hold even when people forget</h3></div>
+          <div>
+            <p class="lead">The business rules live in the database, not just on the screen.</p>
+            <ul>
+              <li>Production cannot start until the client approves the text, even if someone tries another way in</li>
+              <li>Totals are calculated in one place, so every screen and report agrees</li>
+              <li>One database per client in the client’s own account, built from one codebase, so a fix reaches every client</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cap">
+          <div><div class="k">AI layer</div><h3>Agents that work like good staff</h3></div>
+          <div>
+            <p class="lead">Three lanes, and the line between them is simple.</p>
+            <ul>
+              <li><b style="color:var(--text);font-weight:600">Answers on its own:</b> opening hours, what you offer, how delivery works. Facts it reads from your data</li>
+              <li><b style="color:var(--text);font-weight:600">Drafts for a person:</b> quotes, order summaries, booking requests, replies to unhappy customers</li>
+              <li><b style="color:var(--text);font-weight:600">Never on its own:</b> discounts, refunds, payments, confirming a date, anything that commits the business</li>
+              <li>Cloud models, or local open models when data cannot leave the building. Every action logged, spend capped, a kill switch within reach</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cap">
+          <div><div class="k">Security</div><h3>Built to survive a security review</h3></div>
+          <div>
+            <ul>
+              <li>Strong sign-in, two-step for admins, sessions that expire</li>
+              <li>Owner, staff and view-only roles enforced in the database, with row-level rules tested by trying to break them</li>
+              <li>An append-only record of who did what, including what the AI suggested and what a person approved</li>
+              <li>Encryption in transit and at rest, secrets kept in a vault, never in code</li>
+              <li>Prompt-injection tests, limited tool access, and an independent penetration test for sensitive systems</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cap">
+          <div><div class="k">Continuity</div><h3>You can run it without us</h3></div>
+          <div>
+            <ul>
+              <li>Hosting, database, messaging and domain accounts are yours. We are invited admins, nothing more</li>
+              <li>The code is delivered in your own repository, with a plain-language runbook</li>
+              <li>Backups you can restore yourself, tested together before handover</li>
+              <li>Keeps working through power and internet cuts, then syncs when they return</li>
+              <li>An on-premise option with local AI models for sensitive data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Synaptis AI</h4>
-                <p>Intelligent Automation for Modern Business</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Industries</h4>
-                <ul>
-                    <li>Manufacturing</li>
-                    <li>Agriculture</li>
-                    <li>Social Media</li>
-                    <li>Enterprise</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>contact@synaptisai.com</p>
-            </div>
+  <section id="rules">
+    <div class="wrap demo-grid">
+      <div>
+        <p class="eyebrow">Rules that watch for you</p>
+        <h2>The system tells the right person before it becomes a problem</h2>
+        <p class="lede">A customs bond, a stock level, an unpaid balance, a compliance deadline. Drag the slider to see a threshold rule fire.</p>
+      </div>
+      <div>
+        <div class="widget">
+          <div class="w-label">Illustrative logic · bond utilization</div>
+          <div class="w-formula">utilization = (capacity − available balance) / capacity × 100</div>
+          <input type="range" id="slider" min="0" max="100" value="45" aria-label="Bond utilization percentage">
+          <div class="track"><div class="fill" id="fill"></div></div>
+          <div class="readout"><span class="v" id="val">45%</span><span class="state ok" id="state">Healthy</span></div>
+          <div class="alert" id="alert" role="status" aria-live="polite">No alert. Within the normal range.</div>
+          <p class="w-note">Thresholds, recipients and wording are set with each client.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Synaptis AI. All rights reserved.</p>
-        </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    </script>
+  <section id="uses">
+    <div class="wrap">
+      <p class="eyebrow">In practice</p>
+      <h2>What changes in a business like yours</h2>
+      <div class="uses">
+        <div class="use"><h3>Hotels and hospitality</h3><p>Calls and messages go unanswered at night. The agent replies in the guest’s language, checks availability and queues a booking request. Staff confirm in the morning.</p></div>
+        <div class="use"><h3>Distributors</h3><p>Orders arrive as texts and voice notes. The agent turns each one into a structured order. Nothing waits on someone’s memory.</p></div>
+        <div class="use"><h3>Manufacturers</h3><p>Paper job cards and handwritten logs become one live view of production, stock and deadlines, with alerts before something stops the line.</p></div>
+        <div class="use"><h3>Clinics</h3><p>Appointment requests and reminders by message, so fewer people forget to come. Any medical question goes straight to a person.</p></div>
+        <div class="use"><h3>Retail and stores</h3><p>Daily sales, stock and till data checked automatically. Odd numbers raise a flag before month end, not after.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <div>
+          <p class="eyebrow">Track record</p>
+          <h2>Enterprise rigor. Startup speed.</h2>
+        </div>
+        <p class="tag">Client names shared on request.</p>
+      </div>
+      <div class="feature">
+        <div>
+          <p class="kicker">Enterprise · SAP S/4HANA</p>
+          <h3 style="margin-top:12px">The world’s leading ERP, delivered for multi-billion-dollar retailers</h3>
+        </div>
+        <div style="display:grid;gap:14px">
+          <p>More than three years on retail and store operations for large North American chains: point-of-sale data transfer and audit, transaction flows across sales, tax, journal entries and goods movements, master-data migration, and validation between finance and supply chain.</p>
+          <span class="status">3+ years, active practice</span>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <p class="kicker">Manufacturing · Africa</p>
+          <h3>A steel manufacturer, from paper to automated</h3>
+          <p>A major project: the business moved from entirely paper and manual work to automated, cloud-based systems, with a team of AI agents watching inventory, finance, operations and procurement. Low-confidence calls go to a human review queue.</p>
+          <span class="status">Built</span>
+        </article>
+        <article class="card">
+          <p class="kicker">Logistics · Africa</p>
+          <h3>Compliance and capacity system for a bonded warehouse</h3>
+          <p>Sits beside the existing ERP and replaces nothing. Customs-bond expiry and capacity alerts, multi-warehouse occupancy tracking and a WhatsApp client hub, built around the failure that shuts a bonded warehouse down: a missed compliance deadline.</p>
+          <span class="status">Built</span>
+        </article>
+        <article class="card">
+          <p class="kicker">Agriculture · Africa</p>
+          <h3>Production and inventory platform for a flower exporter</h3>
+          <p>A multi-tenant platform that follows harvests from field to cold room to shipped order, with first-in-first-out stock deduction and row-level security enforced in the database.</p>
+          <span class="status">Built</span>
+        </article>
+        <article class="card">
+          <p class="kicker">Pilot · Made-to-order</p>
+          <h3>A command center for a made-to-order brand</h3>
+          <p>Every order tracked from first message to handover: client approval before production, deposits and balances, one delivery calendar.</p>
+          <span class="status">Pilot build, results to follow</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>Start with one workflow</h2>
+      <div class="eng">
+        <div><b>1</b><h3>Discovery</h3><p>A few days beside your team. We map one real process and you get a written plan and a fixed price.</p></div>
+        <div><b>2</b><h3>Build in steps</h3><p>You see it working at every milestone, and you can stop at any of them.</p></div>
+        <div><b>3</b><h3>Pilot and handover</h3><p>A short pilot with numbers measured before and after. Then it is yours, with support if you want it.</p></div>
+      </div>
+      <div class="why">
+        <div><h3>Built on correctness</h3><p>We come from enterprise inventory and financial reporting, not from wiring no-code tools together. The system is built to be right, then fast.</p></div>
+        <div><h3>Sized to you</h3><p>No off-the-shelf platform pretending to fit. Every build starts from how your business actually runs.</p></div>
+        <div><h3>Integration first</h3><p>If something already works, we build around it. Nothing you trust gets ripped out to make room for us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Next step</p>
+        <h2>Let’s pick one painful workflow and fix that first.</h2>
+        <p class="lede">A working session with your team, one real process, and a written plan at the end. No commitment beyond the conversation.</p>
+        <p class="lede" style="margin-top:14px">Reach us through the person who shared this page with you.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Synaptis AI</div>
+    <div>Operations, built with discipline.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var rows=[].slice.call(document.querySelectorAll('.rowbtn'));
+    var count=document.getElementById('ckCount');
+    var update=function(){
+      var n=rows.filter(function(r){return !r.classList.contains('done');}).length;
+      count.textContent = n===0 ? 'All clear' : n+(n===1?' needs you':' need you');
+    };
+    rows.forEach(function(r){
+      r.addEventListener('click',function(){
+        var d=r.classList.toggle('done');
+        r.setAttribute('aria-pressed',d?'true':'false');
+        r.querySelector('.pill').textContent = d ? 'RESOLVED' : r.getAttribute('data-pill');
+        update();
+      });
+    });
+    update();
+  }catch(e){}
+
+  try{
+    var s=document.getElementById('slider'),f=document.getElementById('fill'),v=document.getElementById('val'),
+        st=document.getElementById('state'),al=document.getElementById('alert');
+    var set=function(x){
+      x=parseInt(x,10);
+      f.style.width=x+'%'; v.textContent=x+'%';
+      var label,cls,msg;
+      if(x<70){label='Healthy';cls='ok';msg='No alert. Within the normal range.';}
+      else if(x<85){label='Watch';cls='warn';msg='70% crossed. Alert sent to the responsible team.';}
+      else if(x<95){label='Critical';cls='crit';msg='85% crossed. Escalated, daily reminder active.';}
+      else{label='Critical';cls='crit';msg='95% crossed. Immediate review required.';}
+      st.textContent=label; st.className='state '+cls;
+      f.className='fill'+(cls==='ok'?'':' '+(cls==='warn'?'warn':'crit'));
+      al.textContent=msg;
+    };
+    s.addEventListener('input',function(e){set(e.target.value);});
+    set(s.value);
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
