@@ -200,6 +200,35 @@
   .where span{color:var(--text);user-select:all}
   footer{border-top:1px solid var(--line);padding-block:24px;color:var(--faint);font-size:14px}
   .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  /* pitch, path, continuity */
+  .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+  .col.hi{background:var(--panel-2);border-color:var(--line-2)}
+  .col h3{font-size:25px;line-height:1.15}
+  .col ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;color:var(--soft);font-size:16px}
+  .col li{padding-left:20px;position:relative}
+  .col li::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:2px;background:var(--amber)}
+  .result{margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+  .result small{display:block;font:500 12px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .result b{font:600 18px/1.3 var(--sans)}
+  .path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px}
+  .stage .when{font:500 12px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .stage h3{font-size:26px}
+  .stage h3 span{color:var(--amber);margin-right:8px}
+  .stage p{color:var(--soft);font-size:16px}
+  .keep{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:15px}
+  .keep small{display:block;font:500 12px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .closing{margin-top:32px;font:600 20px/1.4 var(--display);max-width:40ch}
+  .six{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+  .six div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .six small{display:block;font:500 13px/1 var(--mono);color:var(--amber);margin-bottom:12px}
+  .six h3{font-size:22px;margin-bottom:8px}
+  .six p{color:var(--soft);font-size:16px}
+  @media (max-width:980px){.path{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:820px){.three,.six{grid-template-columns:minmax(0,1fr)}}
+  @media (max-width:560px){.path{grid-template-columns:minmax(0,1fr)}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -212,7 +241,7 @@
       <a href="#how">How it works</a>
       <a href="#build">What we build</a>
       <a href="#work">Work</a>
-      <a href="#start">Engagement</a>
+      <a href="#start">Your path</a>
     </nav>
     <a class="btn small" href="#contact">Start a conversation</a>
   </div>
@@ -279,6 +308,30 @@
         <div class="moment"><h3>The deposit nobody can prove</h3><p>“I already paid.” You remember a number. You cannot show one.</p></div>
         <div class="moment"><h3>The promise you cannot keep</h3><p>A yes goes out before anyone checks the stock or the time it takes to make.</p></div>
         <div class="moment"><h3>The owner who cannot step away</h3><p>Everything lives in one head and one phone. Two days off, and the business stops.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pitch">
+    <div class="wrap">
+      <p class="eyebrow">The pitch</p>
+      <h2>Sell more up front, spend less behind it</h2>
+      <p class="lede" style="margin-top:22px">We improve the front end of your business, the back end, or both: sales and customer experience on one side, operating cost and service delivery on the other, joined in one efficient flow.</p>
+      <div class="three">
+        <div class="col"><div class="kicker">Front end</div><h3>Sell more, serve better</h3>
+          <ul><li>Every lead and order captured</li><li>Faster replies, in their language</li><li>Quotes and follow-ups on time</li><li>Promises checked against stock</li></ul>
+          <div class="result"><small>Result</small><b>More sales, happier customers</b></div></div>
+        <div class="col"><div class="kicker">Back end</div><h3>Leaner operations</h3>
+          <ul><li>Less manual work and rework</li><li>Stock and payments reconciled</li><li>Leaks and exceptions flagged early</li><li>Services delivered on time</li></ul>
+          <div class="result"><small>Result</small><b>Lower cost, optimised services</b></div></div>
+        <div class="col hi"><div class="kicker">Or both</div><h3>One connected business</h3>
+          <ul><li>First message flows to the books</li><li>Sales promises match operations</li><li>One source of truth for everyone</li><li>Efficiency measured end to end</li></ul>
+          <div class="result"><small>Result</small><b>Growth without rising cost</b></div></div>
+      </div>
+      <div class="three" style="margin-top:16px">
+        <div class="col"><h3 style="font-size:21px">Pain points</h3><p style="color:var(--soft);font-size:16px">The daily frustrations your team already knows about, and has learned to work around.</p></div>
+        <div class="col"><h3 style="font-size:21px">Hurdles and hidden gaps</h3><p style="color:var(--soft);font-size:16px">Approvals, hand-offs and double entry. Plus the leaks nobody sees: unbilled work, missed follow-ups, stock that does not match the books.</p></div>
+        <div class="col"><h3 style="font-size:21px">Ways of working</h3><p style="color:var(--soft);font-size:16px">Unclear ownership, and steps that live in one person’s head or one phone. We map one real workflow with your team and fix the costliest gap first.</p></div>
       </div>
     </div>
   </section>
@@ -414,34 +467,22 @@
           <h3 style="margin-top:12px">The world’s leading ERP, delivered for multi-billion-dollar retailers</h3>
         </div>
         <div style="display:grid;gap:14px">
-          <p>More than three years on retail and store operations for large North American chains: point-of-sale data transfer and audit, transaction flows across sales, tax, journal entries and goods movements, master-data migration, and validation between finance and supply chain.</p>
-          <span class="status">3+ years, active practice</span>
+          <p>We deliver on it for multi-billion-dollar retailers: point-of-sale data transfer and audit, and store operations. Every till transaction lands correctly in the books.</p>
+          <span class="status">Backed by 20+ years of international corporate operations experience</span>
         </div>
       </div>
       <div class="cards">
         <article class="card">
-          <p class="kicker">Manufacturing · Africa</p>
-          <h3>A steel manufacturer, from paper to automated</h3>
-          <p>A major project: the business moved from entirely paper and manual work to automated, cloud-based systems, with a team of AI agents watching inventory, finance, operations and procurement. Low-confidence calls go to a human review queue.</p>
-          <span class="status">Built</span>
+          <p class="kicker">Africa · Manufacturing</p>
+          <h3>A steel manufacturer, from paper to cloud</h3>
+          <p>A major implementation: from entirely paper and manual work to automated, cloud-based systems, with a team of AI agents watching inventory, finance, operations and procurement. Anything the agents are unsure about goes to a person.</p>
+          <span class="status">Implemented</span>
         </article>
         <article class="card">
-          <p class="kicker">Logistics · Africa</p>
-          <h3>Compliance and capacity system for a bonded warehouse</h3>
-          <p>Sits beside the existing ERP and replaces nothing. Customs-bond expiry and capacity alerts, multi-warehouse occupancy tracking and a WhatsApp client hub, built around the failure that shuts a bonded warehouse down: a missed compliance deadline.</p>
-          <span class="status">Built</span>
-        </article>
-        <article class="card">
-          <p class="kicker">Agriculture · Africa</p>
-          <h3>Production and inventory platform for a flower exporter</h3>
-          <p>A multi-tenant platform that follows harvests from field to cold room to shipped order, with first-in-first-out stock deduction and row-level security enforced in the database.</p>
-          <span class="status">Built</span>
-        </article>
-        <article class="card">
-          <p class="kicker">Pilot · Made-to-order</p>
-          <h3>A command center for a made-to-order brand</h3>
-          <p>Every order tracked from first message to handover: client approval before production, deposits and balances, one delivery calendar.</p>
-          <span class="status">Pilot build, results to follow</span>
+          <p class="kicker">Africa · Agriculture</p>
+          <h3>A flower exporter’s operations platform</h3>
+          <p>Implemented end to end: every harvest followed from field to cold room to shipped order, with stock deducted first-in-first-out and access rules enforced in the database.</p>
+          <span class="status">Implemented</span>
         </article>
       </div>
     </div>
@@ -449,18 +490,33 @@
 
   <section id="start">
     <div class="wrap">
-      <p class="eyebrow">How we work</p>
-      <h2>Start with one workflow</h2>
-      <div class="eng">
-        <div><b>1</b><h3>Discovery</h3><p>A few days beside your team. We map one real process and you get a written plan and a fixed price.</p></div>
-        <div><b>2</b><h3>Build in steps</h3><p>You see it working at every milestone, and you can stop at any of them.</p></div>
-        <div><b>3</b><h3>Pilot and handover</h3><p>A short pilot with numbers measured before and after. Then it is yours, with support if you want it.</p></div>
+      <p class="eyebrow">Your path to AI</p>
+      <h2>A clear path, one step at a time</h2>
+      <p class="lede" style="margin-top:22px">Each stage pays for itself before the next one starts, and you keep everything built along the way.</p>
+      <div class="path">
+        <div class="stage"><div class="when">Weeks 1–2</div><h3><span>1</span>Assess</h3><p>We map your processes with your team, find the pain points and hidden gaps, and choose the first workflow.</p><div class="keep"><small>You keep</small><b>A written plan, a baseline and a fixed price</b></div></div>
+        <div class="stage"><div class="when">Weeks 3–10</div><h3><span>2</span>Pilot</h3><p>One workflow goes live. The AI drafts, a person approves anything that matters, and results are measured.</p><div class="keep"><small>You keep</small><b>A working system and before-and-after numbers</b></div></div>
+        <div class="stage"><div class="when">Months 3–12</div><h3><span>3</span>Scale</h3><p>We extend across the front end and the back end, step by step, into one connected flow.</p><div class="keep"><small>You keep</small><b>The code, the accounts and an updated runbook</b></div></div>
+        <div class="stage"><div class="when">Ongoing</div><h3><span>4</span>Sustain</h3><p>Monthly health checks, model updates and new workflows as you grow. Your own champion runs the daily work.</p><div class="keep"><small>You keep</small><b>Full control, with or without us</b></div></div>
       </div>
-      <div class="why">
-        <div><h3>Built on correctness</h3><p>We come from enterprise inventory and financial reporting, not from wiring no-code tools together. The system is built to be right, then fast.</p></div>
-        <div><h3>Sized to you</h3><p>No off-the-shelf platform pretending to fit. Every build starts from how your business actually runs.</p></div>
-        <div><h3>Integration first</h3><p>If something already works, we build around it. Nothing you trust gets ripped out to make room for us.</p></div>
+      <p class="closing">You can stop at the end of any stage and keep everything built so far.</p>
+    </div>
+  </section>
+
+  <section id="continuity">
+    <div class="wrap">
+      <p class="eyebrow">Continuity</p>
+      <h2>No lock-in, written into the contract</h2>
+      <p class="lede" style="margin-top:22px">Your business keeps running whatever happens to us. You stay with us because it works, not because you are stuck.</p>
+      <div class="six">
+        <div><small>01</small><h3>Exit plan from day one</h3><p>Every contract includes a written handover plan: what you receive, and how, if either side ends the relationship.</p></div>
+        <div><small>02</small><h3>Your data, portable</h3><p>Your data can be exported in standard formats at any time, so you can move it wherever you choose.</p></div>
+        <div><small>03</small><h3>No key-person risk</h3><p>At least two people on our side know your system, and everything is documented, never kept in one head.</p></div>
+        <div><small>04</small><h3>Your own champion</h3><p>We train one or two of your staff to run daily operations, add users and change simple rules.</p></div>
+        <div><small>05</small><h3>Clear support levels</h3><p>Defined response times, monthly health checks and updates, priced up front and in writing.</p></div>
+        <div><small>06</small><h3>Trust you can verify</h3><p>Fixed price, payment by milestone, and you can stop at any milestone. References and demos on request.</p></div>
       </div>
+      <p class="closing">You are not buying a logo. You are buying a result you can verify, and a system you control.</p>
     </div>
   </section>
 
